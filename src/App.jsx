@@ -3,7 +3,7 @@ import { Map } from "./components/Map";
 import { Registration } from "./Registration";
 import { withAuth } from "./contexts";
 import PropTypes from "prop-types";
-import { LoginWithAuth } from "./pages/Authorized";
+import { LoginWithAuth } from "./components/AuthForm";
 import { ProfileWithAuth } from "./components/Profile";
 import "./App.css";
 

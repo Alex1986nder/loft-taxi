@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import { withAuth } from "../../contexts";
 
 export class Profile extends Component {
