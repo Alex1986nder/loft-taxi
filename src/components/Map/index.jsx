@@ -11,7 +11,7 @@ export function Map() {
     const map = new mapboxgl.Map({
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/streets-v12",
-      center: [30.3056504, 59.9429126],
+      center: [37.60345458984374, 55.695776911386126],
       zoom: 10
     });
 
