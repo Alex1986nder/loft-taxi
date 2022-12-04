@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useContext } from "react";
+import React, { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "./style.css";
 
@@ -29,4 +29,3 @@ export function Map() {
   );
 };
 
-// export Map

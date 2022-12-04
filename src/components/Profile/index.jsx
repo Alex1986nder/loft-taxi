@@ -1,11 +1,12 @@
-import React, { Component, useContext } from "react";
-import { withAuth } from "../../contexts";
+import React, { Component } from "react";
+import { logIn, logOut } from "../../action"
+import { connect } from "react-redux";
 
 export class Profile extends Component {
   unauthenticate = (event) => {
     event.preventDefault();
     this.props.logOut();
-    this.props.navigate("Login");
+    
   };
 
   render() {
@@ -18,6 +19,10 @@ export class Profile extends Component {
   }
 }
 
-export const ProfileWithAuth = withAuth(Profile);
+export const ProfileWithAuth = connect(
+  null,
+  { logIn, logOut }
+)
+(Profile);
 
 
