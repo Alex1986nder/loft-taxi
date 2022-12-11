@@ -1,0 +1,59 @@
+
+section {
+	display: flex;
+	justify-content: center;
+}
+.AuthForm {
+  display: flex;
+  max-width: 888px;
+  align-items: center;
+}
+
+.AuthForm__container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 1em;
+
+}
+
+a {
+  text-decoration: none;
+}
+
+h2 {
+  text-align: center;
+}
+
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 1em;
+  width: 100%;
+}
+
+.AuthForm input {
+  border: none;
+  display: block;
+  width: 100%;
+  border-bottom: 2px solid #E4E4E4;
+}
+
+
+.card {
+  display: flex;
+  column-gap: 10px;
+}
+
+.card__mm {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.text {
+  text-align: center;
+}
