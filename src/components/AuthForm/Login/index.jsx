@@ -1,27 +1,30 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState,  useEffect } from "react";
 import { PropTypes } from "prop-types";
 import { authenticate } from "../../../action";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Switch, Link } from "react-router-dom";
+import { PrivateRoute } from "../../../privateRoute";
 import { Map } from "../../Map";
+import {HeaderConnect}  from "../../Header";
 import "./styles.css";
 import { Button } from "../../../ui";
 import logo_img from "../../../assets/images/logo_1.svg";
 import map_img from "../../../assets/images/map.png";
+
+
 export class Login extends Component {
   authenticate = (event) => {
     event.preventDefault();
     const { email, password } = event.target;
     this.props.authenticate(email.value, password.value);
-  };
+    localStorage.setItem(email.value, password.value );
+  }
 
   render() {
     return (
       <>
         {this.props.isLoggedIn ? (
-          <p>
-            <Map />
-          </p>
+           <><Map/></>
         ) : (
           <>
             <div className="Unauthorized">
@@ -34,15 +37,15 @@ export class Login extends Component {
                   <form onSubmit={this.authenticate}>
                     <h2>Войти</h2>
                     <label htmlFor="email">Email</label>
-                    <input id="email" type="email" name="email" />
+                    <input required id="email" type="email" name="email" />
                     <label htmlFor="password">Пароль:</label>
-                    <input
+                    <input required
                       id="password"
                       type="password"
                       name="password"
                       width="355px"
                     />
-                    <Button type="submit">Войти</Button>
+                    <Button onClick={this.storage}type="submit">Войти</Button>
                   </form>
                   <div className="reg">
                     Новый пользователь?

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import "./styles.css";
 import { Button } from "../../ui";
 import credit from "../../assets/images/credit_card.png";
+import { HeaderConnect } from "../Header";
 
 export class Profile extends Component {
   // unauthenticate = (event) => {
@@ -14,34 +15,37 @@ export class Profile extends Component {
   render() {
     return (
       <>
-      <div className="AuthForm">
-        <div className="AuthForm__container">
-          <form>
-            <h2>Профиль</h2>
-            <p className="text">Введите платежные данные</p>
-            <label>Имя владельца</label>
-            <input name="name" width="355px" />
-            <label>Номер карты</label>
-            <input name="number" width="355px" />
-            <div className="card">
-              <div className="card__mm">
-                <label>MM/YY</label>
-                <input name="mmyy" />
-              </div>
-              <div className="card__mm">
-                <label>CVC</label>
-                <input name="cvc" />
-              </div>
+        <HeaderConnect />
+        <div className="wrapper">
+          <div className="AuthForm">
+            <div className="AuthForm__container">
+              <form>
+                <h2>Профиль</h2>
+                <p className="text">Введите платежные данные</p>
+                <label>Имя владельца</label>
+                <input name="name" width="355px" />
+                <label>Номер карты</label>
+                <input name="number" width="355px" />
+                <div className="card">
+                  <div className="card__mm">
+                    <label>MM/YY</label>
+                    <input name="mmyy" />
+                  </div>
+                  <div className="card__mm">
+                    <label>CVC</label>
+                    <input name="cvc" />
+                  </div>
+                </div>
+                <Button type="submit" width="353px">
+                  Сохранить
+                </Button>
+              </form>
             </div>
-            <Button type="submit" width="353px">
-              Сохранить
-            </Button>
-          </form>
+            <div className="credit_card">
+              <img src={credit} />
+            </div>
+          </div>
         </div>
-        <div className="credit_card">
-          <img src={credit} />
-        </div>
-      </div>
 
         {/* <p>
           Profile

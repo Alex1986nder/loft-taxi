@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "./style.css";
+import { HeaderConnect } from "../Header";
+
 
 export function Map() {
   const mapContainer = useRef(null);
@@ -22,6 +24,8 @@ export function Map() {
 
   return (
     <>
+        <HeaderConnect />
+
       <div className="map-wrapper">
         <div data-testid="map" className="map-app" ref={mapContainer}></div>
       </div>
