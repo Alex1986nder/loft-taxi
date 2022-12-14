@@ -10,7 +10,7 @@ import "./styles.css";
 import { Button } from "../../../ui";
 import logo_img from "../../../assets/images/logo_1.svg";
 import map_img from "../../../assets/images/map.png";
-
+import {Redirect} from 'react-router-dom';
 
 export class Login extends Component {
   authenticate = (event) => {
@@ -24,7 +24,7 @@ export class Login extends Component {
     return (
       <>
         {this.props.isLoggedIn ? (
-           <><Map/></>
+           <Redirect to="/map" />
         ) : (
           <>
             <div className="Unauthorized">
