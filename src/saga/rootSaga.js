@@ -1,7 +1,7 @@
 import { fork, all } from "redux-saga/effects";
 
 import {
-  paymentSaga,
+  // paymentSaga,
   routeSaga,
   authorizationSaga,
   registrationSaga,
@@ -10,10 +10,10 @@ import {
 
 export function* rootSaga() {
   yield all([
-    fork(registrationSaga),
     fork(authorizationSaga),
+    fork(registrationSaga),
     fork(addressListSaga),
     fork(routeSaga),
-    fork(paymentSaga),
+    // fork(paymentSaga),
   ]);
 }

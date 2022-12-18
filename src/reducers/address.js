@@ -1,19 +1,18 @@
-import { LOG_IN, LOG_OUT } from "../action";
+import { SET_ADDRESS_LIST } from "../action";
 
 const initialState = {
-  isLoggedIn: false
+  addresses: [],
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = initialState, action) => {
   switch (action.type) {
-    case LOG_IN: {
-      return {isLoggedIn: true}
-    }
-    case LOG_OUT: {
-      return {isLoggedIn: false}
-    }
+    case SET_ADDRESS_LIST:
+      return {
+        ...state,
+        addresses: action.payload,
+      };
     default:
       return state;
   }
-}
+};

@@ -2,11 +2,18 @@
 .wrapper {
 	display: flex;
 	justify-content: center;
+	width: 100vw; height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 50;
+	background: rgba(0,0,0,0.6);
 }
 .AuthForm {
   display: flex;
-  max-width: 888px;
   align-items: center;
+  background-color: #FFFFFF;
+  border-radius: 1em;
 }
 
 .AuthForm__container {

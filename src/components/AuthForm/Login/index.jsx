@@ -17,7 +17,6 @@ export class Login extends Component {
     event.preventDefault();
     const { email, password } = event.target;
     this.props.authenticate(email.value, password.value);
-    localStorage.setItem(email.value, password.value );
   }
 
   render() {

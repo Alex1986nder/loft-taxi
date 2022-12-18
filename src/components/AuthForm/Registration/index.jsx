@@ -8,6 +8,7 @@ import map_img from "../../../assets/images/map.png";
 import { regs } from "../../../action";
 import { Button } from "../../../ui";
 import { Map } from "../../Map";
+import { Redirect } from "react-router-dom";
 
 export class Registration extends Component {
   regs = (event) => {
@@ -18,58 +19,57 @@ export class Registration extends Component {
   render() {
     return (
       <>
-        <div className="Unauthorized">
-          <div className="Unauthorized__block" data-name="logo">
-            <img src={logo_img} />
-          </div>
-          <div className="Unauthorized__block" data-name="form">
-            <img src={map_img} />
-            <div className="AuthForm__container">
-              <form onSubmit={this.regs}>
-                <h2>Регистрация</h2>
-                <label htmlFor="email">Email*</label>
-                <input
-                  required
-                  id="email"
-                  type="email"
-                  name="email"
-                  
-                />
-                <label htmlFor="name">Как вас зовут?*</label>
-                <input required type="text" name="name"  />
-                <label htmlFor="password">Придумайте пароль*:</label>
-                <input
-                  required
-                  id="password"
-                  type="password"
-                  name="password"
-                  
-                />
-                <Button className="registr" type="submit">
-                  Зарегистрироваться
-                </Button>
-                <div className="reg">
-                  Уже зарегистрированы?
-                  <div type="submit">
-                    <Link to="/">Войти</Link>
-                  </div>
+        {this.props.isRegisterIn ? (
+          <Redirect to="/map" />
+        ) : (
+          <>
+            <div className="Unauthorized">
+              <div className="Unauthorized__block" data-name="logo">
+                <img src={logo_img} />
+              </div>
+              <div className="Unauthorized__block" data-name="form">
+                <img src={map_img} />
+                <div className="AuthForm__container">
+                  <form onSubmit={this.regs}>
+                    <h2>Регистрация</h2>
+                    <label htmlFor="email">Email*</label>
+                    <input required id="email" type="email" name="email" />
+                    <label htmlFor="name">Как вас зовут?*</label>
+                    <input required type="text" name="name" />
+                    <label htmlFor="password">Придумайте пароль*:</label>
+                    <input
+                      required
+                      id="password"
+                      type="password"
+                      name="password"
+                    />
+                    <Button className="registr" type="submit">
+                      Зарегистрироваться
+                    </Button>
+                    <div className="reg">
+                      Уже зарегистрированы?
+                      <div type="submit">
+                        <Link to="/">Войти</Link>
+                      </div>
+                    </div>
+                  </form>
                 </div>
-              </form>
+              </div>
             </div>
-          </div>
-        </div>
+          </>
+        )}
+        ;
       </>
     );
   }
 }
 
 Registration.propTypes = {
-  isLoggedIn: PropTypes.bool,
+  isRegisterIn: PropTypes.bool,
 };
 
 export const RegistrationConnect = connect(
-  (state) => ({
-    logOut: state.auth.logOut,
-  }),
+  (state) => (
+    {isRegisterIn: state.reg.isRegisterIn}),
   { regs }
 )(Registration);

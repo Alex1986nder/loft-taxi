@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "./style.css";
 import { HeaderConnect } from "../Header";
+import { ProfileForm } from "../../ProfileForm";
+
 
 
 export function Map() {
@@ -25,7 +27,7 @@ export function Map() {
   return (
     <>
         <HeaderConnect />
-
+        <ProfileForm />
       <div className="map-wrapper">
         <div data-testid="map" className="map-app" ref={mapContainer}></div>
       </div>

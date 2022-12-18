@@ -1,16 +1,15 @@
-import { takeEvery, call, put} from "redux-saga/effects";
-import { serverRegister} from "../api";
-import { REG, logIn } from "../action";
+import { takeEvery, call, put } from "redux-saga/effects";
+import { serverCard } from "../api";
+import { REG, regIn } from "../action";
 
-
-export function* regSaga (action){
-  // const {email, password} = action.payload;
-  const success = yield call(serverRegister, action.payload)
-  if (success){
-    yield put(logIn(success.token, action.payload.email))
+export function* regSaga(action) {
+  const { email, name, password } = action.payload;
+  const success = yield call(serverCard, email, name, password);
+  if (success) {
+    yield put(regIn());
   }
 }
 
 export function* registrationSaga() {
-  yield takeEvery(REG, regSaga)
+  yield takeEvery(REG, regSaga);
 }

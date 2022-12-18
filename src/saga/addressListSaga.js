@@ -9,6 +9,6 @@ export function* AddListSaga() {
   }
 }
 
-export function* AddressListSaga() {
+export function* addressListSaga() {
   yield takeEvery(GET_ADDRESS_LIST, AddListSaga);
 }
