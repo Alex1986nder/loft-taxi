@@ -12,3 +12,7 @@
   background: #fff;
   border-radius: 5%;
 }
+
+select {
+  width:250px;
+}

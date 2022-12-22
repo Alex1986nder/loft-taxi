@@ -1,11 +1,11 @@
 import { fork, all } from "redux-saga/effects";
-
+import {addressListSaga} from "./addressListSaga"
 import {
-  // paymentSaga,
+  paymentSaga,
   routeSaga,
   authorizationSaga,
   registrationSaga,
-  addressListSaga,
+  // addressListSaga,
 } from "./index";
 
 export function* rootSaga() {
@@ -13,7 +13,7 @@ export function* rootSaga() {
     fork(authorizationSaga),
     fork(registrationSaga),
     fork(addressListSaga),
+    fork(paymentSaga),
     fork(routeSaga),
-    // fork(paymentSaga),
   ]);
 }

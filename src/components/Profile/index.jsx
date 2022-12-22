@@ -1,8 +1,7 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./styles.css";
 import { Button } from "../../ui";
-import credit from "../../assets/images/credit_card.png";
 import { HeaderConnect } from "../Header";
 import { Link } from "react-router-dom";
 import { cardDetails } from "../../action";

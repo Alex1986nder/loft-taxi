@@ -8,8 +8,9 @@ import { rootSaga } from "./rootSaga";
 export {
   authorizationSaga,
   registrationSaga,
-  routeSaga,
-  rootSaga,
   addressListSaga,
   paymentSaga,
+  routeSaga,
+  rootSaga,
 };
+

@@ -10,7 +10,7 @@ export default (state = initialState, action) => {
     case SET_ROUTE:
       return {
         ...state,
-        coordinates: action.payload,
+        coordinates: action.payload.coordinates,
       };
 
     case REMOVE_ROUTE:
@@ -24,3 +24,4 @@ export default (state = initialState, action) => {
   }
 };
 
+export const coordinatesSelector = (store) => store.route.coordinates;

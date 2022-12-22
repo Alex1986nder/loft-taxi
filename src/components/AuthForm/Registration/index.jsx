@@ -7,14 +7,13 @@ import logo_img from "../../../assets/images/logo_1.svg";
 import map_img from "../../../assets/images/map.png";
 import { regs } from "../../../action";
 import { Button } from "../../../ui";
-import { Map } from "../../Map";
 import { Redirect } from "react-router-dom";
 
 export class Registration extends Component {
   regs = (event) => {
     event.preventDefault();
-    const { email, name, password } = event.target;
-    this.props.regs(email.value, name.value, password.value);
+    const { email, password, name } = event.target;
+    this.props.regs(email.value, password.value, name.value);
   };
   render() {
     return (
@@ -25,17 +24,17 @@ export class Registration extends Component {
           <>
             <div className="Unauthorized">
               <div className="Unauthorized__block" data-name="logo">
-                <img src={logo_img} />
+                <img alt="" src={logo_img} />
               </div>
               <div className="Unauthorized__block" data-name="form">
-                <img src={map_img} />
+                <img alt="" src={map_img} />
                 <div className="AuthForm__container">
                   <form onSubmit={this.regs}>
                     <h2>Регистрация</h2>
                     <label htmlFor="email">Email*</label>
                     <input required id="email" type="email" name="email" />
                     <label htmlFor="name">Как вас зовут?*</label>
-                    <input required type="text" name="name" />
+                    <input required type="text" name="name"/>
                     <label htmlFor="password">Придумайте пароль*:</label>
                     <input
                       required
@@ -69,7 +68,6 @@ Registration.propTypes = {
 };
 
 export const RegistrationConnect = connect(
-  (state) => (
-    {isRegisterIn: state.reg.isRegisterIn}),
+  (state) => ({ isRegisterIn: state.reg.isRegisterIn }),
   { regs }
 )(Registration);

@@ -1,14 +1,20 @@
 import { takeEvery, call, put } from "redux-saga/effects";
-import { serverAdressList } from "../api";
 import { GET_ADDRESS_LIST, setAddressList } from "../action";
+import { serverAddressList } from "../api";
 
 export function* AddListSaga() {
-  const success = yield call(serverAdressList);
-  if (success) {
-    yield put(setAddressList(success));
+  try {
+    const address = yield call(serverAddressList);
+    
+   
+      yield put(setAddressList(address.addresses));
+    
+  } catch (e) {
+    console.log(e);
   }
 }
 
 export function* addressListSaga() {
   yield takeEvery(GET_ADDRESS_LIST, AddListSaga);
+ 
 }
