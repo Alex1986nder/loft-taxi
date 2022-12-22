@@ -1,19 +1,19 @@
 export const serverCard = async (
-  token,
+  cardName,
   cardNumber,
   expiryDate,
-  cardName,
-  cvc
+  cvc,
+  token,
 ) => {
   const ops = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      token,
+      cardName,
       cardNumber,
       expiryDate,
-      cardName,
       cvc,
+      token,
     }),
   };
   return await fetch(` https://loft-taxi.glitch.me/card`, ops)

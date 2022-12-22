@@ -8,9 +8,9 @@ export const REG = "REG";
 export const GET_ADDRESS_LIST = "GET_ADDRESS_LIST";
 export const SET_ADDRESS_LIST = "SET_ADDRESS_LIST";
 
-export const SET_ROUTE = 'SET_ROUTE';
-export const GET_ROUTE = 'GET_ROUTE';
-export const REMOVE_ROUTE = 'REMOVE_ROUTE';
+export const SET_ROUTE = "SET_ROUTE";
+export const GET_ROUTE = "GET_ROUTE";
+export const REMOVE_ROUTE = "REMOVE_ROUTE";
 
 export const PROFILE_SUBMIT = "PROFILE_SUBMIT";
 export const CARD_DETAILS = "CARD_DETAILS";
@@ -25,9 +25,9 @@ export const authenticate = (email, password) => ({
   payload: { email, password },
 });
 
-export const regs = (email, name, password) => ({
+export const regs = (email, password, name, surname) => ({
   type: REG,
-  payload: { email, name, password },
+  payload: { email, password, name, surname },
 });
 
 export const getAddressList = () => ({ type: GET_ADDRESS_LIST });
@@ -36,12 +36,18 @@ export const setAddressList = (addressList) => ({
   payload: { addressList },
 });
 
-export const setRoute = (coordinates) => ({type: SET_ROUTE, payload: coordinates});
-export const getRoute = (address1, address2) => ({type: GET_ROUTE, payload: {address1, address2}});
-export const removeRoute = () => ({type: REMOVE_ROUTE});
+export const setRoute = (coordinates) => ({
+  type: SET_ROUTE,
+  payload: coordinates,
+});
+export const getRoute = (address1, address2) => ({
+  type: GET_ROUTE,
+  payload: { address1, address2 },
+});
+export const removeRoute = () => ({ type: REMOVE_ROUTE });
 
-export const profileSubmit = () => ({type: PROFILE_SUBMIT});
+export const profileSubmit = () => ({ type: PROFILE_SUBMIT });
 export const cardDetails = (cardNumber, expiryDate, cardName, cvc, token) => ({
-    type: CARD_DETAILS,
-    payload: { cardNumber, expiryDate, cardName, cvc, token }
+  type: CARD_DETAILS,
+  payload: { cardNumber, expiryDate, cardName, cvc, token },
 });

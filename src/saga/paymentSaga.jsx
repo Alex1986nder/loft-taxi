@@ -6,7 +6,7 @@ export function* cardDetailsSaga(action) {
     const {cardNumber, expiryDate, cardName, cvc, token} = action.payload;
     const success = yield call(serverCard, cardNumber, expiryDate, cardName, cvc, token);
     if(success) {
-        yield put(profileSubmit())
+        yield put(profileSubmit(success))
     }
 }
 export function* paymentSaga() {

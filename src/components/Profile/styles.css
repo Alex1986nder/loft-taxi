@@ -71,17 +71,79 @@ form {
 
 /*  */
 
+.profile-section {
+  height: calc(100vh - 72px);
+  position: relative;
+  pointer-events: none;
+}
 
+.profile-section__wrapper {
+  pointer-events: all;
+}
 
+.profile-wrapper {
+  position: absolute;
+  background-color: rgba(28, 26, 25);
+  opacity: 0.5;
+  inset: 0px;
+}
 
+.profile {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 60px 43px;
+  border-radius: 10px;
+  background: white;
 
+}
 
+.profile__title {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+}
 
+.profile__subtitle {
+  text-align: center;
+}
 
 .profile__data {
   display: flex;
   align-items: center;
   padding: 40px 0;
+}
+
+.profile__column {
+  flex: 1;
+  margin-right: 100px;
+}
+
+.profile__column:last-child {
+  margin-right: 0;
+}
+
+.profile__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__row {
+  display: flex;
+}
+
+.form__row .label {
+  font-weight: normal;
+}
+
+.profile__button {
+  display: flex;
+  justify-content: center;
+}
+
+.btn__color {
+  color: #000;
 }
 
 .profile__card {
@@ -114,7 +176,8 @@ form {
   display: flex;
 }
 
-.circle::before,  .circle::after{
+.circle::before,
+.circle::after {
   content: '';
   width: 28px;
   height: 28px;

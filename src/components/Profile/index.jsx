@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import "./styles.css";
 import { Button } from "../../ui";
@@ -25,11 +25,11 @@ export class Profile extends Component {
   sendNumber = (e) => {
     const { value } = e.target;
     const match =
-    value
-      .replace(/\D/g, "")
-      .substring(0, 16)
-      .match(/.{1,4}/g) || [];
-  e.target.value = match.join(" ");
+      value
+        .replace(/\D/g, "")
+        .substring(0, 16)
+        .match(/.{1,4}/g) || [];
+    e.target.value = match.join(" ");
     this.setState({
       cardNumber: e.target.value,
     });
@@ -37,12 +37,12 @@ export class Profile extends Component {
   sendExpiryDate = (e) => {
     const { value } = e.target;
     const match =
-    value
-      .replace(/\D/g, "")
-      .substring(0, 4)
-      .match(/.{1,2}/g) || [];
-  e.target.value = match.join("/");
-    
+      value
+        .replace(/\D/g, "")
+        .substring(0, 4)
+        .match(/.{1,2}/g) || [];
+    e.target.value = match.join("/");
+
     this.setState({
       expiryDate: e.target.value,
     });
@@ -55,41 +55,45 @@ export class Profile extends Component {
     });
   };
 
-  cardDetails = (e) => {
+  cardDetails = (e, props) => {
     e.preventDefault();
-    const { cardNumber, expiryDate, cardName, cvc } = e.target;
+    const { cardName, cardNumber, expiryDate, cvc } = e.target;
     this.props.cardDetails(
+      cardName.value,
       cardNumber.value,
       expiryDate.value,
-      cardName.value,
       cvc.value
     );
+
+    // console.log(this.props)
   };
 
   render() {
     return (
       <>
         {this.props.isSubmitted ? (
-          <div className="wrapper">
+          <>
             <HeaderConnect />
-            <section className="profile-section">
-              <div className="profile-section__wrapper">
-                <div className="profile-wrapper"></div>
-                <div data-testid="profile" className="profile">
-                  <h1 className="profile__title">Профиль</h1>
-                  <p className="profile__subtitle">
-                    Платёжные данные обновлены. Теперь вы можете заказывать
-                    такси.
-                  </p>
-                  <div className="profile__button">
-                    <button className="btn btn--profile">
-                      <Link to="/map">Перейти на карту</Link>
-                    </button>
+            <div className="wrapper">
+              <section className="AuthForm">
+                <div className="profile-section__wrapper">
+                  <div className="profile-wrapper"></div>
+                  <div data-testid="profile" className="profile">
+                    <h1 className="profile__title">Профиль</h1>
+                    <p className="profile__subtitle">
+                      Платёжные данные обновлены. Теперь вы можете заказывать
+                      такси.
+                    </p>
+                    <div className="profile__button">
+                      <div className="btn " type="submit">
+                        <Link className="btn__color" to="/map">Перейти на карту</Link>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </section>
-          </div>
+              </section>
+            </div>{" "}
+          </>
         ) : (
           <>
             <HeaderConnect />
@@ -100,9 +104,15 @@ export class Profile extends Component {
                     <h2>Профиль</h2>
                     <p className="text">Введите платежные данные</p>
                     <label>Имя владельца</label>
-                    <input name="cardName" width="355px" onChange={this.sendName} />
+                    <input
+                      required
+                      name="cardName"
+                      width="355px"
+                      onChange={this.sendName}
+                    />
                     <label>Номер карты</label>
                     <input
+                      required
                       name="cardNumber"
                       width="355px"
                       onChange={this.sendNumber}
@@ -111,13 +121,14 @@ export class Profile extends Component {
                       <div className="card__mm">
                         <label>MM/YY</label>
                         <input
+                          required
                           name="expiryDate"
                           onChange={this.sendExpiryDate}
                         />
                       </div>
                       <div className="card__mm">
                         <label>CVC</label>
-                        <input name="cvc" onChange={cvc} />
+                        <input required name="cvc" onChange={cvc} />
                       </div>
                     </div>
 

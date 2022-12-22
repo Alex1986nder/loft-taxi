@@ -10,11 +10,12 @@ import { Button } from "../../../ui";
 import { Redirect } from "react-router-dom";
 
 export class Registration extends Component {
-  regs = (event) => {
-    event.preventDefault();
-    const { email, password, name } = event.target;
-    this.props.regs(email.value, password.value, name.value);
+  regs = (e) => {
+    e.preventDefault();
+    const { email, password, name, surname } = e.target;
+    this.props.regs(email.value, password.value, name.value, surname.value);
   };
+  
   render() {
     return (
       <>
@@ -34,7 +35,9 @@ export class Registration extends Component {
                     <label htmlFor="email">Email*</label>
                     <input required id="email" type="email" name="email" />
                     <label htmlFor="name">Как вас зовут?*</label>
-                    <input required type="text" name="name"/>
+                    <input required type="text" name="name" id="name" />
+                    <label htmlFor="surname"></label>
+                    <input required type="text" name="surname" id="surname" />
                     <label htmlFor="password">Придумайте пароль*:</label>
                     <input
                       required

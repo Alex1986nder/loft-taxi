@@ -30,6 +30,7 @@ export function Map() {
     if (map && coordinates.length) {
       drawRoute(map, coordinates);
       // setMap(map);
+      
     }
     
   }, []);

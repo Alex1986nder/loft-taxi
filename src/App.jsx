@@ -12,6 +12,10 @@ import { logOut, logIn, authenticate } from "./action";
 import "./components/Header";
 
 export const App = (props) => {
+
+  // useEffect(() => {
+  //   console.log(props)
+  // }, [])
   useEffect(() => {
     let LS_taxi_data = localStorage.getItem("LS_taxi_data");
 
