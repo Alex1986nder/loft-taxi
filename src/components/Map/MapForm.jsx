@@ -9,6 +9,9 @@ import {
 import { addressesSelector } from "../../reducers/addressList";
 import { getRoute } from "../../action";
 import { MapSelect } from "./MapSelect";
+// import { Remove } from "./MapDrawRoute";
+import { drawRoute } from "./MapDrawRoute";
+
 
 import { getAddressList } from "../../action";
 
@@ -46,28 +49,27 @@ const useFormStyles = makeStyles(() => ({
 }));
 
 export const MapForm = (props) => {
-  
   const dispatch = useDispatch();
 
-  const addresses = useSelector(addressesSelector);
+  const add = useSelector(addressesSelector);
   const classes = useFormStyles();
   useEffect(() => {
     dispatch(getAddressList());
   }, []);
 
-  console.log(addresses);
 
-  const [route, setRoute] = useState({ address1: "", address2: "" });
+  const [route, setRouter] = useState({ address1: "", address2: "" });
 
   const onChange = (event) => {
     let input = event.target;
-    setRoute({ ...route, [input.name]: input.value });
+    setRouter({ ...route, [input.name]: input.value });
   };
 
   const onButtonClick = () => {
+    // Remove();
     dispatch(getRoute(route));
   };
-  console.log(route)
+// console.log(route)
 
   return (
     <>
@@ -79,7 +81,7 @@ export const MapForm = (props) => {
             otherAddress={route.address2}
             onChange={onChange}
             route={route}
-            values={addresses}
+            values={add}
           ></MapSelect>
         </FormControl>
         <FormControl>
@@ -89,7 +91,7 @@ export const MapForm = (props) => {
             otherAddress={route.address1}
             onChange={onChange}
             route={route}
-            values={addresses}
+            values={add}
           >
             Куда
           </MapSelect>

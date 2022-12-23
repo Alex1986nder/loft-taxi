@@ -5,10 +5,8 @@ import { serverAddressList } from "../api";
 export function* AddListSaga() {
   try {
     const address = yield call(serverAddressList);
-    
-   
-      yield put(setAddressList(address.addresses));
-    
+
+    yield put(setAddressList(address));
   } catch (e) {
     console.log(e);
   }
@@ -16,5 +14,4 @@ export function* AddListSaga() {
 
 export function* addressListSaga() {
   yield takeEvery(GET_ADDRESS_LIST, AddListSaga);
- 
 }

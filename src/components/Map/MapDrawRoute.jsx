@@ -1,9 +1,17 @@
+
+
 export const drawRoute = (map, coordinates) => {
+  console.log(coordinates);
+
   map.flyTo({
     center: coordinates[0],
-    zoom: 15,
+    zoom: 10,
   });
 
+  if (map.getLayer('route')) {
+    map.removeLayer('route');
+    map.removeSource('route');
+}
   map.addLayer({
     id: "route",
     type: "line",

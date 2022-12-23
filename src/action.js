@@ -10,7 +10,7 @@ export const SET_ADDRESS_LIST = "SET_ADDRESS_LIST";
 
 export const SET_ROUTE = "SET_ROUTE";
 export const GET_ROUTE = "GET_ROUTE";
-export const REMOVE_ROUTE = "REMOVE_ROUTE";
+export const RESET_COORDINATES = "RESET_COORDINATES";
 
 export const PROFILE_SUBMIT = "PROFILE_SUBMIT";
 export const CARD_DETAILS = "CARD_DETAILS";
@@ -33,18 +33,18 @@ export const regs = (email, password, name, surname) => ({
 export const getAddressList = () => ({ type: GET_ADDRESS_LIST });
 export const setAddressList = (addressList) => ({
   type: SET_ADDRESS_LIST,
-  payload: { addressList },
+  payload: addressList,
 });
 
 export const setRoute = (coordinates) => ({
   type: SET_ROUTE,
-  payload: coordinates,
+  payload: {coordinates} ,
 });
-export const getRoute = (address1, address2) => ({
+export const getRoute = (address) => ({
   type: GET_ROUTE,
-  payload: { address1, address2 },
+  payload: { address},
 });
-export const removeRoute = () => ({ type: REMOVE_ROUTE });
+export const resetCoordinates = () => ({type: RESET_COORDINATES});
 
 export const profileSubmit = () => ({ type: PROFILE_SUBMIT });
 export const cardDetails = (cardNumber, expiryDate, cardName, cvc, token) => ({

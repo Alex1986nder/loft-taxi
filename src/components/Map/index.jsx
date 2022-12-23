@@ -1,42 +1,30 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "./style.css";
 import { HeaderConnect } from "../Header";
 import { MapForm } from "./MapForm";
 import { drawRoute } from "./MapDrawRoute";
-import { useDispatch, useSelector } from "react-redux";
-import { removeRoute } from "../../action";
-import { setRoute } from "../../action";
+import { MapOverlay } from "./MapOverlay";
+import { useSelector } from "react-redux";
 import { coordinatesSelector } from "../../reducers/route";
-// import { addressesSelector } from "../../reducers/addressList";
 
-export function Map() {
-  const [map, setMap] = React.useState(null);
+export default function Map(state) {
+  const [map, setMap] = useState(null);
   const mapContainer = useRef(null);
 
   const coordinates = useSelector(coordinatesSelector);
-  const dispatch = useDispatch();
 
-  const reset = (event) => {
-    event.preventDefault();
-    dispatch(removeRoute());
-    
-  };
-  // useEffect(() => {
-  //   dispatch(removeRoute());
-  // }, []);
-  
   useEffect(() => {
-    if (map && coordinates.length) {
-      drawRoute(map, coordinates);
-      // setMap(map);
-      
+    if (map) {
+      try {
+        drawRoute(map, coordinates);
+      } catch (error) {
+        console.log(error);
+      }
     }
-    
-  }, []);
+  }, [coordinates]);
 
-  console.log(coordinates);
-
+  // console.log(coo);
 
   useEffect(() => {
     mapboxgl.accessToken =
@@ -49,9 +37,9 @@ export function Map() {
     });
     setMap(map);
 
-    // return () => {
-    //   map.remove();
-    // };
+    return () => {
+      map.remove();
+    };
   }, []);
 
   return (
@@ -60,6 +48,7 @@ export function Map() {
       <div className="map-wrapper">
         <div data-testid="map" className="map-app" ref={mapContainer}></div>
         <MapForm />
+        <MapOverlay />
       </div>
     </>
   );
