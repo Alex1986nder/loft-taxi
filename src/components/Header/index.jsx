@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import "./styles.css";
 import logo_img from "../../assets/images/logo.svg";
-import { Switch, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { logOut } from "../../action";
 import { connect } from "react-redux";
-import { PrivateRoute } from "../../privateRoute";
-import { Map } from "../Map";
-import { ProfileWithAuth } from "../Profile";
+
 import { PropTypes } from "prop-types";
 
 export class Header extends Component {
@@ -20,7 +18,7 @@ export class Header extends Component {
       <>
         <header className="Header">
           <div className="Header__logo">
-            <img src={logo_img} />
+            <img alt="" src={logo_img} />
           </div>
           <nav>
             <ul className="Header__navList">

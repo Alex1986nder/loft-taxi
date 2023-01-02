@@ -1,4 +1,4 @@
-export const serverLogin = async (email, password) => {
+export const serverLogin =  async (email, password) => {
   // return fetch(
   //   `https://loft-taxi.glitch.me/auth?username=${email}&password=${password}`
   // ).then(res => res.json()).then(data => data.success);
@@ -8,6 +8,6 @@ export const serverLogin = async (email, password) => {
     body: JSON.stringify({ email, password }),
   };
 
-  return fetch(`https://loft-taxi.glitch.me/auth`, ops)
-    .then((response) => response.json())
+  const response = await fetch(`https://loft-taxi.glitch.me/auth`, ops);
+  return await response.json();
 };

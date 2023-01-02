@@ -1,7 +1,24 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./reducers";
-import { authMiddleware} from "./middlewares/authMiddleware"
+import createSagaMiddleware from "redux-saga";
+import { rootSaga } from "./saga/rootSaga";
+// import { loadState, saveState } from "./LocalStorage";
 
+// const initialState = loadState();
 
-export const store = createStore(rootReducer, applyMiddleware(authMiddleware));
+const sagaMiddleware = createSagaMiddleware();
 
+export const store = createStore(
+  rootReducer,
+  // initialState,
+  applyMiddleware(sagaMiddleware), 
+  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+// store.subscribe(() => {
+//   saveState({
+//     isLoggedIn: store.getState().isLoggedIn,
+//   });
+// });
+
+sagaMiddleware.run(rootSaga);

@@ -1,51 +1,63 @@
-import React, { Component, useState,  useEffect } from "react";
+import React, { Component } from "react";
 import { PropTypes } from "prop-types";
 import { authenticate } from "../../../action";
 import { connect } from "react-redux";
-import { Switch, Link } from "react-router-dom";
-import { PrivateRoute } from "../../../privateRoute";
-import { Map } from "../../Map";
-import {HeaderConnect}  from "../../Header";
+import { Link } from "react-router-dom";
 import "./styles.css";
 import { Button } from "../../../ui";
 import logo_img from "../../../assets/images/logo_1.svg";
 import map_img from "../../../assets/images/map.png";
-
+import { Redirect } from "react-router-dom";
 
 export class Login extends Component {
   authenticate = (event) => {
     event.preventDefault();
     const { email, password } = event.target;
     this.props.authenticate(email.value, password.value);
-    localStorage.setItem(email.value, password.value );
-  }
-
+    const obj = {
+      email: email.value,
+      password: password.value,
+    };
+    window.localStorage.setItem("LS_taxi_data", JSON.stringify(obj));
+  };
+  
   render() {
+    
     return (
       <>
         {this.props.isLoggedIn ? (
-           <><Map/></>
+          <Redirect to="/map" />
         ) : (
           <>
             <div className="Unauthorized">
               <div className="Unauthorized__block" data-name="logo">
-                <img src={logo_img} />
+                <img alt="" src={logo_img} />
               </div>
               <div className="Unauthorized__block" data-name="form">
-                <img src={map_img} />
+                <img alt="" src={map_img} />
                 <div className="AuthForm__container">
                   <form onSubmit={this.authenticate}>
                     <h2>Войти</h2>
                     <label htmlFor="email">Email</label>
-                    <input required id="email" type="email" name="email" />
+                    <input
+                      // value={username}
+                      required
+                      id="email"
+                      type="email"
+                      name="email"
+                    />
                     <label htmlFor="password">Пароль:</label>
-                    <input required
+                    <input
+                      // value={password}
+                      required
                       id="password"
                       type="password"
                       name="password"
                       width="355px"
                     />
-                    <Button onClick={this.storage}type="submit">Войти</Button>
+                    <Button type="submit">
+                      Войти
+                    </Button>
                   </form>
                   <div className="reg">
                     Новый пользователь?

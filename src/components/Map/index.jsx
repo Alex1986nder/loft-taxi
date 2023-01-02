@@ -1,11 +1,30 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "./style.css";
 import { HeaderConnect } from "../Header";
+import { MapForm } from "./MapForm";
+import { drawRoute } from "./MapDrawRoute";
+import { MapOverlay } from "./MapOverlay";
+import { useSelector } from "react-redux";
+import { coordinatesSelector } from "../../reducers/route";
 
-
-export function Map() {
+export default function Map(state) {
+  const [map, setMap] = useState(null);
   const mapContainer = useRef(null);
+
+  const coordinates = useSelector(coordinatesSelector);
+
+  useEffect(() => {
+    if (map) {
+      try {
+        drawRoute(map, coordinates);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }, [coordinates]);
+
+  // console.log(coo);
 
   useEffect(() => {
     mapboxgl.accessToken =
@@ -14,8 +33,9 @@ export function Map() {
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/streets-v12",
       center: [37.60345458984374, 55.695776911386126],
-      zoom: 10
+      zoom: 10,
     });
+    setMap(map);
 
     return () => {
       map.remove();
@@ -24,12 +44,12 @@ export function Map() {
 
   return (
     <>
-        <HeaderConnect />
-
+      <HeaderConnect />
       <div className="map-wrapper">
         <div data-testid="map" className="map-app" ref={mapContainer}></div>
+        <MapForm />
+        <MapOverlay />
       </div>
     </>
   );
-};
-
+}
