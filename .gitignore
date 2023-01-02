@@ -4,11 +4,16 @@
 /node_modules
 /.pnp
 .pnp.js
+/.yarn
 
 # testing
 /coverage
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> fourWeek
 
 # misc
 .DS_Store
