@@ -35,7 +35,7 @@ export const App = (props) => {
       <main>
         <section>
           <Switch>
-            <Route exact path="/loft-taxi" component={LoginWithAuth} />
+            <Route exact path="/" component={LoginWithAuth} />
             <Route path="/registration" component={RegistrationConnect} />
             <PrivateRoute path="/map" component={Map} />
             <PrivateRoute path="/profile" component={ProfileWithAuth} />
