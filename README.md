@@ -1,6 +1,6 @@
 <h1 style="color:#ADFF2F;" >Учебный проект курса "React.js" в Loftschool :mortar_board:</h1>
 
-:point_right: **[**"Приложение для заказа такси"**]()** :open_file_folder:
+:point_right: **[**"Приложение для заказа такси"**](https://alex1986nder.github.io/)** :open_file_folder:
 
 ### Реализован следующий функционал: 
 
